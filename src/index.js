@@ -18,28 +18,6 @@ export default class {
         this.length = 0;
     }
 
-    find(value) {
-        const node = this._findRecursive(this.root, value);
-
-        return node === this.nil ? null : node.value;
-    }
-
-    _findRecursive(node, value) {
-        if (node === this.nil) {
-            return this.nil;
-        }
-
-        const compare = this.comparator(value, node.value);
-
-        if (compare < 0) {
-            return this._findRecursive(node.left, value);
-        } else if (compare > 0) {
-            return this._findRecursive(node.right, value);
-        }
-
-        return node;
-    }
-
     minimum() {
         const minimum = this._minimum(this.root);
 
@@ -204,7 +182,7 @@ export default class {
     }
 
     delete(value) {
-        const node = this._findRecursive(this.root, value);
+        const node = this._find(this.root, value);
 
         if (node === this.nil) {
             return;
@@ -248,6 +226,18 @@ export default class {
         if (!originalRed) {
             this._deleteFixup(target);
         }
+    }
+
+    _find(node, value) {
+        for (
+            let compare = node === node.nil ? 0 : this.comparator(value, node.value);
+            compare;
+            compare = node === node.nil ? 0 : this.comparator(value, node.value)
+        ) {
+            node = compare < 0 ? node.left: node.right
+        }
+
+        return node;
     }
 
     _transplant(a, b) {
