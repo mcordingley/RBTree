@@ -354,4 +354,33 @@ export default class {
 
         return parent;
     }
+
+    range(leastValue, greatestValue) {
+        let node = this.root,
+            parent = this.nil,
+            compare;
+
+        while (compare = node === this.nil ? 0 : this.comparator(node.value, leastValue)) {
+            parent = node;
+            node = compare < 0 ? node.left : node.right;
+        }
+
+        if (node === this.nil) {
+            node = parent;
+
+            if (node !== this.nil && this.comparator(node.value, leastValue) > 0) {
+                node = this._successor(node);
+            }
+        }
+
+        const range = [];
+
+        while (node !== this.nil && this.comparator(node.value, greatestValue) <= 0) {
+            range.push(node.value);
+
+            node = this._successor(node);
+        }
+
+        return range;
+    }
 }
