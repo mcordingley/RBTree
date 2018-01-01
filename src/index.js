@@ -6,7 +6,7 @@ export default class {
             else return 0;
         };
 
-        this.nil = {
+        this._nil = {
             left: null,
             parent: null,
             red: false,
@@ -14,18 +14,18 @@ export default class {
             value: null,
         };
 
-        this.root = this.nil;
+        this._root = this._nil;
         this.length = 0;
     }
 
     minimum() {
-        const minimum = this._minimum(this.root);
+        const minimum = this._minimum(this._root);
 
-        return minimum === this.nil ? null : minimum.value;
+        return minimum === this._nil ? null : minimum.value;
     }
 
     _minimum(node) {
-        while (node.left !== this.nil) {
+        while (node.left !== this._nil) {
             node = node.left;
         }
 
@@ -33,13 +33,13 @@ export default class {
     }
 
     maximum() {
-        const maximum = this._maximum(this.root);
+        const maximum = this._maximum(this._root);
 
-        return maximum === this.nil ? null : maximum.value;
+        return maximum === this._nil ? null : maximum.value;
     }
 
     _maximum(node) {
-        while (node.right !== this.nil) {
+        while (node.right !== this._nil) {
             node = node.right;
         }
 
@@ -47,18 +47,18 @@ export default class {
     }
 
     insert(value) {
-        let node = this.root,
-            parent = this.nil;
+        let node = this._root,
+            parent = this._nil;
 
         const child = {
-            left: this.nil,
-            parent: this.nil,
+            left: this._nil,
+            parent: this._nil,
             red: true,
-            right: this.nil,
+            right: this._nil,
             value: value,
         };
 
-        while (node !== this.nil) {
+        while (node !== this._nil) {
             let compare = this.comparator(value, node.value);
             parent = node;
 
@@ -73,8 +73,8 @@ export default class {
 
         child.parent = parent;
 
-        if (parent === this.nil) {
-            this.root = child;
+        if (parent === this._nil) {
+            this._root = child;
         } else if (this.comparator(child.value, parent.value) < 0) {
             parent.left = child;
         } else {
@@ -135,7 +135,7 @@ export default class {
             }
         }
 
-        this.root.red = false;
+        this._root.red = false;
     }
 
     _leftRotate(node) {
@@ -143,14 +143,14 @@ export default class {
 
         node.right = other.left;
 
-        if (other.left !== this.nil) {
+        if (other.left !== this._nil) {
             other.left.parent = node;
         }
 
         other.parent = node.parent;
 
-        if (node.parent === this.nil) {
-            this.root = other;
+        if (node.parent === this._nil) {
+            this._root = other;
         } else if (node === node.parent.left) {
             node.parent.left = other;
         } else {
@@ -166,14 +166,14 @@ export default class {
 
         node.left = other.right;
 
-        if (other.right !== this.nil) {
+        if (other.right !== this._nil) {
             other.right.parent = node;
         }
 
         other.parent = node.parent;
 
-        if (node.parent === this.nil) {
-            this.root = other;
+        if (node.parent === this._nil) {
+            this._root = other;
         } else if (node === node.parent.right) {
             node.parent.right = other;
         } else {
@@ -185,20 +185,20 @@ export default class {
     }
 
     delete(value) {
-        const node = this._find(this.root, value);
+        const node = this._find(this._root, value);
 
-        if (node === this.nil) {
+        if (node === this._nil) {
             return;
         }
 
         let originalRed = node.red,
             target = null;
 
-        if (node.left === this.nil) {
+        if (node.left === this._nil) {
             target = node.right;
 
             this._transplant(node, node.right);
-        } else if (node.right === this.nil) {
+        } else if (node.right === this._nil) {
             target = node.left;
 
             this._transplant(node, node.left);
@@ -233,9 +233,9 @@ export default class {
 
     _find(node, value) {
         for (
-            let compare = node === node.nil ? 0 : this.comparator(value, node.value);
+            let compare = node === node._nil ? 0 : this.comparator(value, node.value);
             compare;
-            compare = node === node.nil ? 0 : this.comparator(value, node.value)
+            compare = node === node._nil ? 0 : this.comparator(value, node.value)
         ) {
             node = compare < 0 ? node.left: node.right
         }
@@ -244,8 +244,8 @@ export default class {
     }
 
     _transplant(a, b) {
-        if (a.parent === this.nil) {
-            this.root = b;
+        if (a.parent === this._nil) {
+            this._root = b;
         } else if (a === a.parent.left) {
             a.parent.left = b;
         } else {
@@ -256,7 +256,7 @@ export default class {
     }
 
     _deleteFixup(node) {
-        while (node !== this.root && !node.red) {
+        while (node !== this._root && !node.red) {
             if (node === node.parent.left) {
                 let other = node.parent.right;
 
@@ -290,7 +290,7 @@ export default class {
 
                     this._leftRotate(node.parent);
 
-                    node = this.root;
+                    node = this._root;
                 }
             } else {
                 let other = node.parent.left;
@@ -325,7 +325,7 @@ export default class {
 
                     this._rightRotate(node.parent);
 
-                    node = this.root;
+                    node = this._root;
                 }
             }
         }
@@ -334,7 +334,7 @@ export default class {
     }
 
     contains(value) {
-        return this._find(this.root, value) !== this.nil;
+        return this._find(this._root, value) !== this._nil;
     }
 
     values() {
@@ -342,9 +342,9 @@ export default class {
     }
 
     *[Symbol.iterator]() {
-        let node = this._minimum(this.root);
+        let node = this._minimum(this._root);
 
-        while (node !== this.nil) {
+        while (node !== this._nil) {
             yield node.value;
 
             node = this._successor(node);
@@ -352,13 +352,13 @@ export default class {
     }
 
     _successor(node) {
-        if (node.right !== this.nil) {
+        if (node.right !== this._nil) {
             return this._minimum(node.right);
         }
 
         let parent = node.parent;
 
-        while (parent !== this.nil && node === parent.right) {
+        while (parent !== this._nil && node === parent.right) {
             node = parent;
             parent = parent.parent;
         }
@@ -367,26 +367,26 @@ export default class {
     }
 
     range(leastValue, greatestValue) {
-        let node = this.root,
-            parent = this.nil,
+        let node = this._root,
+            parent = this._nil,
             compare;
 
-        while (compare = node === this.nil ? 0 : this.comparator(node.value, leastValue)) {
+        while (compare = node === this._nil ? 0 : this.comparator(node.value, leastValue)) {
             parent = node;
             node = compare < 0 ? node.left : node.right;
         }
 
-        if (node === this.nil) {
+        if (node === this._nil) {
             node = parent;
 
-            if (node !== this.nil && this.comparator(node.value, leastValue) > 0) {
+            if (node !== this._nil && this.comparator(node.value, leastValue) > 0) {
                 node = this._successor(node);
             }
         }
 
         const range = [];
 
-        while (node !== this.nil && this.comparator(node.value, greatestValue) <= 0) {
+        while (node !== this._nil && this.comparator(node.value, greatestValue) <= 0) {
             range.push(node.value);
 
             node = this._successor(node);
