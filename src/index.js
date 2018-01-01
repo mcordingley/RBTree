@@ -337,6 +337,10 @@ export default class {
         return this._find(this.root, value) !== this.nil;
     }
 
+    values() {
+        return [...this];
+    }
+
     *[Symbol.iterator]() {
         let node = this._minimum(this.root);
 
