@@ -371,7 +371,7 @@ export default class {
             parent = this._nil,
             compare;
 
-        while (compare = node === this._nil ? 0 : this.comparator(node.value, leastValue)) {
+        while (compare = node === this._nil ? 0 : this.comparator(leastValue, node.value)) {
             parent = node;
             node = compare < 0 ? node.left : node.right;
         }
@@ -386,7 +386,7 @@ export default class {
 
         const range = [];
 
-        while (node !== this._nil && this.comparator(node.value, greatestValue) <= 0) {
+        while (node !== this._nil && this.comparator(greatestValue, node.value) <= 0) {
             range.push(node.value);
 
             node = this._successor(node);
