@@ -59,12 +59,15 @@ export default class {
         };
 
         while (node !== this.nil) {
+            let compare = this.comparator(value, node.value);
             parent = node;
 
-            if (this.comparator(value, node.value) < 0) {
+            if (compare < 0) {
                 node = node.left;
-            } else {
+            } else if (compare > 0) {
                 node = node.right;
+            } else {
+                return;
             }
         }
 
@@ -328,6 +331,10 @@ export default class {
         }
 
         node.red = false;
+    }
+
+    contains(value) {
+        return this._find(this.root, value) !== this.nil;
     }
 
     *[Symbol.iterator]() {
