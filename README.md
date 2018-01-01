@@ -65,7 +65,7 @@ The values of the tree are accessible as an array via the `values` method. The v
 good starting point for using array-based methods, such as `filter`, `each`, and `map`. 
 
 ```javascript
-const valueArray = tree.values();
+const elementArray = tree.values();
 ```
 
 To efficiently find values that fall within a range, call the `range` method with values that define the start and end
@@ -78,7 +78,7 @@ const subArray = tree.range(min.id, max.id);
 The tree is also iterable, so it may directly be used within `for...of` loops.
 
 ```javascript
-for (let id of tree) {
+for (let element of tree) {
     //
 }
 ```
