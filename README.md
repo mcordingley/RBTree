@@ -69,7 +69,8 @@ const elementArray = tree.values();
 ```
 
 To efficiently find values that fall within a range, call the `range` method with values that define the start and end
-of the desired range.
+of the desired range. These values may also be replaced with functions that are called with only the current value and
+should return -1, 0, or 1 to define the start and end of the desired range. 
 
 ```javascript
 const subArray = tree.range(min.id, max.id);
