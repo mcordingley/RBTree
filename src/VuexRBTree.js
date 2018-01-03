@@ -366,12 +366,20 @@ export default class {
         return parent;
     }
 
-    range(leastValue, greatestValue) {
+    range(least, greatest) {
+        if (typeof least !== 'function') {
+            least = partial(this.comparator, least);
+        }
+
+        if (typeof greatest !== 'function') {
+            greatest = partial(this.comparator, greatest);
+        }
+
         let node = this._root,
             parent = this._nil,
             compare;
 
-        while (compare = node === this._nil ? 0 : this.comparator(leastValue, node.value)) {
+        while (compare = node === this._nil ? 0 : least(node.value)) {
             parent = node;
             node = compare < 0 ? node.left : node.right;
         }
@@ -379,14 +387,14 @@ export default class {
         if (node === this._nil) {
             node = parent;
 
-            if (node !== this._nil && this.comparator(node.value, leastValue) > 0) {
+            if (node !== this._nil && least(node.value) > 0) {
                 node = this._successor(node);
             }
         }
 
         const range = [];
 
-        while (node !== this._nil && this.comparator(greatestValue, node.value) <= 0) {
+        while (node !== this._nil && greatest(node.value) <= 0) {
             range.push(node.value);
 
             node = this._successor(node);
@@ -394,4 +402,12 @@ export default class {
 
         return range;
     }
+}
+
+function partial(func) {
+    let bound = Array.prototype.slice.call(arguments, 1);
+
+    return function () {
+        func.apply(this, bound.concat(arguments));
+    };
 }
