@@ -18,10 +18,23 @@ export default class {
         this.length = 0;
     }
 
-    minimum() {
-        const minimum = this._minimum(this._root);
+    minimum(count) {
+        let node = this._minimum(this._root);
 
-        return minimum === this._nil ? null : minimum.value;
+        if (typeof count === 'undefined') {
+            return node === this._nil ? null : node.value;
+        }
+
+        let values = [];
+
+        count = Math.abs(parseInt(count, 10));
+
+        while (node !== this._nil && count) {
+            values.push(node.value);
+
+            node = this._successor(node);
+            count--;
+        }
     }
 
     _minimum(node) {
@@ -32,10 +45,23 @@ export default class {
         return node;
     }
 
-    maximum() {
-        const maximum = this._maximum(this._root);
+    maximum(count) {
+        let node = this._maximum(this._root);
 
-        return maximum === this._nil ? null : maximum.value;
+        if (typeof count === 'undefined') {
+            return node === this._nil ? null : node.value;
+        }
+
+        let values = [];
+
+        count = Math.abs(parseInt(count, 10));
+
+        while (node !== this._nil && count) {
+            values.push(node.value);
+
+            node = this._predecessor(node);
+            count--;
+        }
     }
 
     _maximum(node) {
@@ -359,6 +385,21 @@ export default class {
         let parent = node.parent;
 
         while (parent !== this._nil && node === parent.right) {
+            node = parent;
+            parent = parent.parent;
+        }
+
+        return parent;
+    }
+
+    _predecessor(node) {
+        if (node.left !== this._nil) {
+            return this._maximum(node.left);
+        }
+
+        let parent = node.parent;
+
+        while (parent !== this._nil && node === parent.left) {
             node = parent;
             parent = parent.parent;
         }
