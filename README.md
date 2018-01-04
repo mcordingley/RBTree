@@ -54,11 +54,14 @@ The tree may be queried to see if it contains a value with `contains`.
 const hasElement = tree.contains(foo.id);
 ```
 
-The minimum and maximum values can be found with methods of the same name.
+The minimum and maximum values can be found with methods of the same name. Pass an integer to instead receive an array
+of the top or bottom values in the tree, sorted in order from most extreme to least.
 
 ```javascript
 const maxValue = tree.maximum(),
     minValue = tree.minimum();
+
+const topFive = tree.maximum(5);
 ```
 
 The values of the tree are accessible as an array via the `values` method. The values will be in sorted order. This is a
