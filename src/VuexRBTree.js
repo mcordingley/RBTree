@@ -35,6 +35,8 @@ export default class {
             node = this._successor(node);
             count--;
         }
+
+        return values;
     }
 
     _minimum(node) {
@@ -62,6 +64,8 @@ export default class {
             node = this._predecessor(node);
             count--;
         }
+
+        return values;
     }
 
     _maximum(node) {
