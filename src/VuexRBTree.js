@@ -368,7 +368,16 @@ export default class {
     }
 
     values() {
-        return [...this];
+        let values = [],
+            node = this._minimum(this._root);
+
+        while (node !== this._nil) {
+            values.push(node.value);
+
+            node = this._successor(node);
+        }
+
+        return values;
     }
 
     _successor(node) {
