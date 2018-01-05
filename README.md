@@ -1,4 +1,4 @@
-# Vuex Red-Black Tree
+# RB Tree
 
 Maintains a collection in sorted order.
 
@@ -8,7 +8,7 @@ For storing primitive values with an inherent order, just create a new tree. Ins
 for ordering purposes.
 
 ```javascript
-const tree = new VuexRBTree();
+const tree = new RBTree();
 ```
 
 If the sorting logic is more complex or if the inserted values are keys to objects stored elsewhere, pass a comparator

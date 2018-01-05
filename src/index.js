@@ -1,3 +1,3 @@
-import VuexRBTree from "./VuexRBTree";
+import RBTree from "./RBTree";
 
-module.exports = VuexRBTree;
+module.exports = RBTree;

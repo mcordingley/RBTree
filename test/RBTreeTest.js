@@ -2,24 +2,24 @@ if (typeof chai === 'undefined') {
     var chai = require('chai');
 }
 
-if (typeof VuexRBTree === 'undefined') {
-    var VuexRBTree = require('../dist/VuexRBTree');
+if (typeof RBTree === 'undefined') {
+    var RBTree = require('../dist/RBTree');
 }
 
 var assert = chai.assert,
     randomIntSequence = [3, 9, 5, 7, 0, 2, 4, 6, 1, 8];
 
 function buildTestTree() {
-    var tree = new VuexRBTree();
+    var tree = new RBTree();
 
     randomIntSequence.forEach(function(value) { tree.insert(value) });
 
     return tree;
 }
 
-describe('VuexRBTree', function () {
+describe('RBTree', function () {
     it('should initialize with zero length', function () {
-        var tree = new VuexRBTree();
+        var tree = new RBTree();
 
         assert.strictEqual(tree.length, 0);
     });
@@ -40,9 +40,8 @@ describe('VuexRBTree', function () {
     });
 
     it('should cast to array with elements in order', function () {
-        var tree = buildTestTree();
-
-        var treeValues = tree.values();
+        var tree = buildTestTree(),
+            treeValues = tree.values();
 
         assert.isArray(treeValues);
 
@@ -79,9 +78,8 @@ describe('VuexRBTree', function () {
     });
 
     it('should handle range queries', function () {
-        var tree = buildTestTree();
-
-        var treeValues = tree.range(2.5, 7);
+        var tree = buildTestTree(),
+            treeValues = tree.range(2.5, 7);
 
         assert.isArray(treeValues);
 

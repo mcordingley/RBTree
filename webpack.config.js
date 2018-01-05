@@ -19,8 +19,8 @@ module.exports = {
         ]
     },
     output: {
-        filename: "VuexRBTree.js",
-        library: "VuexRBTree",
+        filename: "RBTree.js",
+        library: "RBTree",
         libraryTarget: "umd",
         path: __dirname + "/dist"
     },
