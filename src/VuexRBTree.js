@@ -262,11 +262,9 @@ export default class {
     }
 
     _find(node, value) {
-        for (
-            let compare = node === node._nil ? 0 : this.comparator(value, node.value);
-            compare;
-            compare = node === node._nil ? 0 : this.comparator(value, node.value)
-        ) {
+        let compare;
+
+        while (compare = node === this._nil ? 0 : this.comparator(value, node.value)) {
             node = compare < 0 ? node.left: node.right
         }
 
