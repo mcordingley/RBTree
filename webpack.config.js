@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-    entry: "./src/VuexRBTree.js",
+    entry: "./src/index.js",
     module: {
         rules: [
             {
@@ -11,7 +11,7 @@ module.exports = {
                     {
                         loader: "babel-loader",
                         options: {
-                            presets: ['@babel/preset-env']
+                            presets: ['env']
                         }
                     }
                 ]
@@ -20,7 +20,9 @@ module.exports = {
     },
     output: {
         filename: "VuexRBTree.js",
-        path: path.resolve(__dirname, "dist")
+        library: "VuexRBTree",
+        libraryTarget: "umd",
+        path: __dirname + "/dist"
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin()
