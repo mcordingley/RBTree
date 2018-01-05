@@ -73,7 +73,8 @@ const elementArray = tree.values();
 
 To efficiently find values that fall within a range, call the `range` method with values that define the start and end
 of the desired range. These values may also be replaced with functions that will be called with only the current value
-and should return -1, 0, or 1 to show if the current value is before, directly on, or after the boundary, respectively.
+and should return a negative, zero, or positive value to show if the current value is before, directly on, or after the
+boundary, respectively.
 
 ```javascript
 const subArray = tree.range(min.id, id => {
