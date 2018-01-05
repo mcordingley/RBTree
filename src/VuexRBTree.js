@@ -371,16 +371,6 @@ export default class {
         return [...this];
     }
 
-    *[Symbol.iterator]() {
-        let node = this._minimum(this._root);
-
-        while (node !== this._nil) {
-            yield node.value;
-
-            node = this._successor(node);
-        }
-    }
-
     _successor(node) {
         if (node.right !== this._nil) {
             return this._minimum(node.right);

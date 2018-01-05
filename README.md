@@ -82,11 +82,3 @@ const subArray = tree.range(min.id, id => {
     else return 0; // id lies directly on the boundary and will be included
 });
 ```
-
-The tree is also iterable, so it may directly be used within `for...of` loops.
-
-```javascript
-for (let element of tree) {
-    //
-}
-```
