@@ -438,7 +438,7 @@ export default class {
 
         const range = [];
 
-        while (node !== this._nil && greatest(node.value) <= 0) {
+        while (node !== this._nil && greatest(node.value) >= 0) {
             range.push(node.value);
 
             node = this._successor(node);
@@ -452,6 +452,8 @@ function partial(func) {
     let bound = Array.prototype.slice.call(arguments, 1);
 
     return function () {
-        func.apply(this, bound.concat(arguments));
+        let unbound = Array.prototype.slice.call(arguments);
+
+        return func.apply(this, bound.concat(unbound));
     };
 }
