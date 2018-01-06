@@ -1,5 +1,5 @@
 {
-  "name": "@mcordingley/rb-tree",
+  "name": "mcordingley/rb-tree",
   "version": "0.0.0",
   "description": "A red-black tree crafted for everyone, but with Vuex and friends in mind.",
   "main": "dist/RBTree.js",
