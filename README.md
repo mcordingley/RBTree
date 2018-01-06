@@ -32,7 +32,7 @@ function into the constructor. In this example, the stored values are keys for o
 objects are retrieved from that other index and the property on which the object keys are to be sorted is compared.
 
 ```javascript
-const tree = new VuexRBTree((a, b) => {
+const tree = new RBTree((a, b) => {
     const aValue = state.fooById[a].bar,
         bValue = state.fooById[b].bar;
 
