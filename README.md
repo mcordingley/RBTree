@@ -1,6 +1,22 @@
 # RB Tree
 
-Maintains a collection in sorted order.
+[![Build Status](https://travis-ci.org/mcordingley/RBTree.svg?branch=master)](https://travis-ci.org/mcordingley/RBTree)
+
+Maintains a collection in sorted order. Use this whenever you would otherwise have a collection that gets sorted every
+time that a new value is added. Can be used to store elements of any type, be they objects or even identifiers for
+objects that are stored elsewhere. See the API documentation below for examples that store and retrieve object IDs, but
+keep the collection sorted according to a property on the objects themselves.
+
+Built for use with Vuex, but it should be usable anywhere. If this doesn't work with your favorite tool, please file an
+issue with all of the details. Documented pull requests will be merged faster. :)
+
+## Getting Started
+
+If you're using NPM, install `mcordingley/rb-tree`. If you instead want a browser global, just grab `dist/RBTree.js` and
+drop it into a script tag. `dist/RBTree.js` is built in UMD style for use with CommonJS, AMD, etc.
+
+If you would instead prefer ES6 style imports, simply `import` from `src/RBTree.js`. `RBTree` is the default and only
+export.
 
 ## API Documentation
 
