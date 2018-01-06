@@ -1,9 +1,9 @@
 {
-  "name": "vuex-rb-tree",
+  "name": "rb-tree",
   "version": "0.0.0",
-  "description": "A red-black tree crafted specifically for Vuex.",
-  "main": "dist/VuexRBTree.js",
-  "module": "src/VuexRBTree.js",
+  "description": "A red-black tree crafted for everyone, but with Vuex and friends in mind.",
+  "main": "dist/RBTree.js",
+  "module": "src/RBTree.js",
   "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcordingley/VuexRBTree.git"
+    "url": "git+https://github.com/mcordingley/RBTree.git"
   },
   "keywords": [
     "tree",
@@ -28,7 +28,7 @@
   "author": "Michael Cordingley",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mcordingley/VuexRBTree/issues"
+    "url": "https://github.com/mcordingley/RBTree/issues"
   },
-  "homepage": "https://github.com/mcordingley/VuexRBTree#readme"
+  "homepage": "https://github.com/mcordingley/RBTree#readme"
 }
