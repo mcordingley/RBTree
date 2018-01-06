@@ -12,7 +12,7 @@ issue with all of the details. Documented pull requests will be merged faster. :
 
 ## Getting Started
 
-If you're using NPM, install `mcordingley/rb-tree`. If you instead want a browser global, just grab `dist/RBTree.js` and
+If you're using NPM, install `@mcordingley/rb-tree`. If you instead want a browser global, just grab `dist/RBTree.js` and
 drop it into a script tag. `dist/RBTree.js` is built in UMD style for use with CommonJS, AMD, etc.
 
 If you would instead prefer ES6 style imports, simply `import` from `src/RBTree.js`. `RBTree` is the default and only
